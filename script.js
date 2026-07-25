@@ -321,6 +321,37 @@
   });
 })();
 
+/* Sync project tags on the overview page from index.html (single source of truth) */
+(function () {
+  const cards = document.querySelectorAll(".po-card");
+  if (!cards.length) return;
+
+  fetch("index.html")
+    .then((res) => res.text())
+    .then((html) => {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const tagMap = {};
+      const catMap = {};
+      doc.querySelectorAll("a.project-card[href]").forEach((link) => {
+        const href = link.getAttribute("href");
+        const tags = link.querySelector(".project-tags");
+        if (tags) tagMap[href] = tags.textContent.trim();
+        const cats = link.getAttribute("data-categories");
+        if (cats) catMap[href] = cats;
+      });
+
+      cards.forEach((card) => {
+        const href = card.getAttribute("href");
+        const tagEl = card.querySelector(".po-card-tags");
+        if (tagEl && tagMap[href]) tagEl.textContent = tagMap[href];
+        if (catMap[href]) card.setAttribute("data-categories", catMap[href]);
+      });
+    })
+    .catch(() => {
+      /* keep the tags already in the markup as fallback */
+    });
+})();
+
 (function () {
   const burger = document.querySelector(".nav-burger");
   const navLinks = document.querySelector(".nav-links");

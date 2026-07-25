@@ -158,30 +158,31 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
-  gap: 0.5em;
+  gap: 0.6em;
   align-self: flex-end;
-  padding: 0.55em 1.1em;
-  border: 1px solid #000;
-  border-radius: 9999px;
-  background: transparent;
-  color: #000;
+  padding: clamp(0.55em, 0.8vw, 0.8em) clamp(0.9em, 1.5vw, 1.5em);
+  border-radius: 0;
+  background: #000;
+  color: #ececec;
   text-decoration: none;
-  font-size: clamp(0.7rem, 0.35vw + 0.5rem, 0.9rem);
-  letter-spacing: 0;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  font-size: clamp(0.62rem, 0.3vw + 0.45rem, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  transition: background 0.2s ease, color 0.2s ease;
   text-transform: uppercase;
 }
 
 .project-link-btn:hover {
-  color: #4f4f4f;
-  border-color: #4f4f4f;
+  background: #333;
+  color: #ececec;
 }
 
 .project-link-arrow {
-  font-size: 1.3em;
+  font-size: 1.2em;
   line-height: 1;
   display: flex;
   align-items: center;
+  transform: translate(2px, -2px);
 }
 
 /* ── Swipe Gallery ───────────────────────────── */
