@@ -41,6 +41,37 @@
 /* ── Mobile (≤ 768px) ───────────────────────────────── */
 @media (max-width: 768px) {
 
+  .nav-burger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 2rem;
+    gap: 2rem;
+    background-color: #ececec;
+    z-index: 100;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
   /* ─ Hero ─ */
   .hero {
     padding-top: clamp(18rem, 28vw, 20rem);

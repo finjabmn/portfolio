@@ -118,7 +118,7 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <p class="footer-cta">Lets work<br class="footer-br"> together</p>
+      <p class="footer-work-together">Lets work<br class="footer-br"> together</p>
       <div class="footer-links-row">
         <a class="footer-link" href="mailto:finjabormann03@gmail.com">finjabormann03@gmail.com</a>
         <div class="footer-social">
@@ -131,28 +131,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    (function () {
-      const filters = document.querySelectorAll('.po-filter');
-      const cards = document.querySelectorAll('.po-card');
-
-      filters.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          filters.forEach(function (f) { f.classList.remove('is-active'); });
-          btn.classList.add('is-active');
-
-          const active = btn.dataset.filter;
-          cards.forEach(function (card) {
-            if (active === 'all') {
-              card.classList.remove('is-hidden');
-            } else {
-              const cats = (card.dataset.categories || '').split(' ');
-              card.classList.toggle('is-hidden', !cats.includes(active));
-            }
-          });
-        });
-      });
-    })();
-  </script>
   </body>
 </html>

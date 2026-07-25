@@ -21,6 +21,64 @@
       }
     });
 
+    // Build scrollbar track + draggable thumb
+    const scrollbar = document.createElement("div");
+    scrollbar.className = "slider-scrollbar";
+    const fill = document.createElement("div");
+    fill.className = "slider-fill";
+    scrollbar.appendChild(fill);
+    const thumb = document.createElement("button");
+    thumb.className = "slider-thumb";
+    thumb.type = "button";
+    thumb.setAttribute("aria-label", "Position in der Galerie");
+    scrollbar.appendChild(thumb);
+    viewport.insertAdjacentElement("afterend", scrollbar);
+
+    function thumbTravel() {
+      const inset = thumb.offsetLeft;
+      return scrollbar.clientWidth - inset * 2 - thumb.offsetWidth;
+    }
+
+    function updateThumb() {
+      const range = maxX - minX;
+      const progress = range > 0 ? (maxX - x) / range : 0;
+      const offset = progress * thumbTravel();
+      thumb.style.transform = `translateX(${offset}px)`;
+      fill.style.width = `${offset + thumb.offsetWidth / 2}px`;
+    }
+
+    // Drag the thumb to scrub the slider
+    let thumbDragging = false;
+    let thumbPointerId = null;
+    function onThumbDown(e) {
+      e.stopPropagation();
+      cancelAnimation();
+      thumbDragging = true;
+      thumbPointerId = e.pointerId;
+      thumb.setPointerCapture(e.pointerId);
+      thumb.classList.add("is-dragging");
+    }
+    function onThumbMove(e) {
+      if (!thumbDragging || e.pointerId !== thumbPointerId) return;
+      const rect = scrollbar.getBoundingClientRect();
+      const travel = thumbTravel();
+      let pos = e.clientX - rect.left - thumb.offsetLeft - thumb.offsetWidth / 2;
+      const progress = travel > 0 ? clamp(pos / travel, 0, 1) : 0;
+      x = maxX - progress * (maxX - minX);
+      setTransform();
+    }
+    function onThumbUp(e) {
+      if (!thumbDragging || e.pointerId !== thumbPointerId) return;
+      thumbDragging = false;
+      thumbPointerId = null;
+      thumb.classList.remove("is-dragging");
+      snapToNearest(x);
+    }
+    thumb.addEventListener("pointerdown", onThumbDown);
+    thumb.addEventListener("pointermove", onThumbMove);
+    thumb.addEventListener("pointerup", onThumbUp);
+    thumb.addEventListener("pointercancel", onThumbUp);
+
     let x = 0;
     let minX = 0;
     let maxX = 0;
@@ -79,6 +137,7 @@
 
     function setTransform() {
       track.style.transform = `translate3d(${x}px, 0, 0)`;
+      updateThumb();
     }
 
     function nearestSnapIndex(value) {
@@ -404,3 +463,25 @@
     if (e.key === "Escape") close();
   });
 })();
+
+    (function () {
+      const filters = document.querySelectorAll('.po-filter');
+      const cards = document.querySelectorAll('.po-card');
+
+      filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filters.forEach(function (f) { f.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+
+          const active = btn.dataset.filter;
+          cards.forEach(function (card) {
+            if (active === 'all') {
+              card.classList.remove('is-hidden');
+            } else {
+              const cats = (card.dataset.categories || '').split(' ');
+              card.classList.toggle('is-hidden', !cats.includes(active));
+            }
+          });
+        });
+      });
+    })();

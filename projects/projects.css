@@ -2,6 +2,50 @@
    PROJECT DETAIL PAGES
 ═══════════════════════════════════════════════ */
 
+.slider-scrollbar {
+  position: relative;
+  width: clamp(120px, 18vw, 150px);
+  height: 3px;
+  margin: clamp(1.5rem, 3vw, 2.5rem) auto;
+  background: #c4c4c4;
+  border-radius: 9999px;
+}
+
+.slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: #000;
+  border-radius: 9999px;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: clamp(11px, 2.2vw, 14px);
+  height: clamp(11px, 2.2vw, 14px);
+  margin-top: calc(clamp(11px, 2.2vw, 14px) * -0.5);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #000000;
+  cursor: grab;
+  touch-action: none;
+  transition: background 0.2s ease;
+}
+
+.slider-thumb:hover {
+  background: #000;
+}
+
+.slider-thumb.is-dragging {
+  cursor: grabbing;
+  background: #000;
+}
+
 .project-tags {
   font-size: clamp(0.65rem, 0.3vw + 0.4rem, 0.78rem);
   letter-spacing: 0.1em;
@@ -266,7 +310,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: clamp(5rem, 6vw, 7rem);
   padding-top: clamp(1.5rem, 2vw, 2rem);
   padding-bottom: clamp(3rem, 4vw, 6rem);
   padding-left: clamp(1.25rem, 2.5vw, 2rem);

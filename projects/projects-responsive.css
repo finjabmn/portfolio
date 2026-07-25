@@ -8,6 +8,11 @@
 
 /* ── Tablet (≤ 1024px) ───────────────────────── */
 @media (max-width: 1024px) {
+
+  .slider-dots {
+    padding: clamp(1rem, 2vw, 2rem);
+  }
+
   .project-intro-inner {
     grid-template-columns: 1fr;
     gap: clamp(1.25rem, 2.5vw, 2rem);
@@ -35,10 +40,6 @@
     font-size: clamp(1rem, 2.5vw, 1.3rem);
   }
 
-  .project-nav {
-    margin-top: clamp(4rem, 5vw, 6rem);
-  }
-
   .project-gallery {
     margin: clamp(2rem, 5vw, 3rem) 0;
   }
@@ -46,6 +47,11 @@
 
 /* ── Mobile (≤ 768px) ────────────────────────── */
 @media (max-width: 768px) {
+
+  .slider-dots {
+    padding: clamp(1rem, 2vw, 2rem);
+  }
+
   .project-intro-inner {
     grid-template-columns: 1fr;
   }
@@ -80,7 +86,6 @@
   }
 
   .project-nav {
-    margin-top: clamp(4rem, 6vw, 5rem);
     align-items: flex-start;
   }
 
@@ -91,6 +96,11 @@
 
 /* ── Small Mobile (≤ 480px) ──────────────────── */
 @media (max-width: 480px) {
+
+  .slider-dots {
+    padding: clamp(1rem, 2vw, 2rem);
+  }
+
   .project-hero-image {
     padding-top: clamp(4rem, 8vw, 6rem);
     padding-left: 1.25rem;
