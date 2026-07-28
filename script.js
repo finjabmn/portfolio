@@ -379,9 +379,9 @@
           entry.target.classList.toggle("in-view", entry.isIntersecting);
         });
       },
-      { threshold: 0.7 }
+      { threshold: 0.5 }
     );
-    document.querySelectorAll(".project-card").forEach((card) => observer.observe(card));
+    document.querySelectorAll(".project-card, .po-card, .ga-card").forEach((card) => observer.observe(card));
   }
 })();
 

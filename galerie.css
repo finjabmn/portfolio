@@ -96,6 +96,12 @@
   transform: scale(1.04);
 }
 
+@media (hover: none) {
+  .ga-card.in-view .ga-card-img img {
+    transform: scale(1.04);
+  }
+}
+
 .ga-card-body {
   padding-top: clamp(0.6rem, 1vw, 1rem);
   display: flex;
