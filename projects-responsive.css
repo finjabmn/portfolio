@@ -1,0 +1,100 @@
+/* ═══════════════════════════════════════════════════════
+   PROJECTS-RESPONSIVE.CSS
+   Responsive Styles für Projekte, Galerie und Projektansicht
+   Clamps decken fluid scaling ab.
+
+   Breakpoints:
+   Tablet  → max-width: 1024px
+   Mobile  → max-width: 768px
+   Small   → max-width: 480px
+═══════════════════════════════════════════════════════ */
+
+
+/* ── Tablet (≤ 1024px) ───────────────────────────────── */
+@media (max-width: 1024px) {
+
+  /* Galerie-Karten etwas breiter relativ */
+  #gallery .project-card {
+    flex: 0 0 clamp(220px, 44vw, 420px);
+    width: clamp(220px, 44vw, 420px);
+  }
+
+  /* Projekt-Grid 2 Spalten bleiben, aber weniger Gap */
+  .projects-static-grid {
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+
+}
+
+
+/* ── Mobile (≤ 768px) ───────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* ─ Galerie-Slider ─ */
+  #gallery .project-card {
+    flex: 0 0 clamp(200px, 75vw, 340px);
+    width: clamp(200px, 75vw, 340px);
+  }
+
+  /* ─ Projektkarten ─ */
+  .project-desc {
+    line-height: 1.4;
+  }
+
+  /* ─ Projektdetails ─ */
+  .project-hero-image {
+    padding-top: clamp(4rem, 8vw, 6rem);
+  }
+
+  .project-meta {
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+
+  .project-overview,
+  .project-text-block {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .project-overview-label,
+  .project-section-title {
+    padding-top: 0;
+  }
+
+}
+
+
+/* ── Small Mobile (≤ 480px) ─────────────────────────── */
+@media (max-width: 480px) {
+
+  /* ─ Galerie-Karten ─ */
+  #gallery .project-card {
+    flex: 0 0 82vw;
+    width: 82vw;
+  }
+
+  /* ─ Projekt-Grid ─ */
+  .projects-static-grid {
+    padding: 0 1.25rem;
+    gap: 2rem;
+  }
+
+  .project-image-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .project-hero-image img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .project-next-title {
+    font-size: clamp(1.2rem, 6vw, 2rem);
+  }
+
+  /* ─ Slideshow (für Projekte) ─ */
+  .slideshow-frame {
+    aspect-ratio: 3 / 4;
+  }
+
+}

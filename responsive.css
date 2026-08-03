@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════
    RESPONSIVE.CSS
+   Responsive Styles für Index-Seite (Nav, Hero, Footer, About)
    Clamps decken fluid scaling ab.
-   Diese Datei enthält strukturelle Breakpoint-Änderungen.
 
    Breakpoints:
    Tablet  → max-width: 1024px
@@ -12,17 +12,6 @@
 
 /* ── Tablet (≤ 1024px) ───────────────────────────────── */
 @media (max-width: 1024px) {
-
-  /* Galerie-Karten etwas breiter relativ */
-  #gallery .project-card {
-    flex: 0 0 clamp(220px, 44vw, 420px);
-    width: clamp(220px, 44vw, 420px);
-  }
-
-  /* Projekt-Grid 2 Spalten bleiben, aber weniger Gap */
-  .projects-static-grid {
-    gap: clamp(1rem, 2vw, 2rem);
-  }
 
   /* About-Label-Spalte etwas schmaler */
   .about-row {
@@ -41,6 +30,7 @@
 /* ── Mobile (≤ 768px) ───────────────────────────────── */
 @media (max-width: 768px) {
 
+  /* ─ Navigation ─ */
   .nav-burger {
     display: flex;
   }
@@ -84,15 +74,9 @@
     font-weight: 500;
   }
 
-  /* Slideshow auf Mobile deutlich höher */
+  /* ─ Slideshow (Index-Seite) ─ */
   .slideshow-frame {
     aspect-ratio: 16 / 16;
-  }
-
-  /* ─ Galerie-Slider ─ */
-  #gallery .project-card {
-    flex: 0 0 clamp(200px, 75vw, 340px);
-    width: clamp(200px, 75vw, 340px);
   }
 
   /* ─ Über mich ─ */
@@ -107,31 +91,6 @@
 
   .about-skills {
     gap: 2rem;
-  }
-
-  /* ─ Projektkarten ─ */
-  .project-desc {
-    line-height: 1.4;
-  }
-
-  /* ─ Projektdetails ─ */
-  .project-hero-image {
-    padding-top: clamp(4rem, 8vw, 6rem);
-  }
-
-  .project-meta {
-    gap: clamp(1rem, 3vw, 2rem);
-  }
-
-  .project-overview,
-  .project-text-block {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-  }
-
-  .project-overview-label,
-  .project-section-title {
-    padding-top: 0;
   }
 
 }
@@ -171,18 +130,6 @@
     padding-right: 1.25rem;
   }
 
-  /* ─ Galerie-Karten ─ */
-  #gallery .project-card {
-    flex: 0 0 82vw;
-    width: 82vw;
-  }
-
-  /* ─ Projekt-Grid ─ */
-  .projects-static-grid {
-    padding: 0 1.25rem;
-    gap: 2rem;
-  }
-
   /* ─ Section Link ─ */
   .section-link-wrap {
     padding-right: 1.25rem;
@@ -200,25 +147,6 @@
   .footer-links-row {
     flex-direction: column;
     gap: 1rem;
-  }
-
-
-  .project-image-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .project-hero-image img {
-    aspect-ratio: 4 / 3;
-  }
-
-  .project-next-title {
-    font-size: clamp(1.2rem, 6vw, 2rem);
-  }
-
-  /* ─ Slideshow ─ */
-  .slideshow-frame {
-    aspect-ratio: 3 / 4;
   }
 
 }

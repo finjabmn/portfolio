@@ -1,3 +1,7 @@
+// ========================================
+// SLIDER / CAROUSEL
+// ========================================
+
 (function () {
   const EASE_OUT_CUBIC = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -194,17 +198,13 @@
       animateTo(snapPoints[idx]);
     }
 
-    function getClientX(e) {
-      return e.clientX;
-    }
-
     function onPointerDown(e) {
       if (e.button !== undefined && e.button !== 0 && e.pointerType === "mouse") return;
       cancelAnimation();
       isDragging = true;
       dragDistance = 0;
       dragStartX = x;
-      dragStartPointerX = getClientX(e);
+      dragStartPointerX = e.clientX;
       pointerId = e.pointerId;
       moveSamples = [{ time: performance.now(), x: dragStartPointerX }];
       viewport.classList.add("is-dragging");
@@ -213,7 +213,7 @@
 
     function onPointerMove(e) {
       if (!isDragging || e.pointerId !== pointerId) return;
-      const clientX = getClientX(e);
+      const clientX = e.clientX;
       const delta = clientX - dragStartPointerX;
       dragDistance = Math.max(dragDistance, Math.abs(delta));
 
@@ -314,6 +314,10 @@
   document.querySelectorAll(".projects-viewport").forEach(initSlider);
 })();
 
+// ========================================
+// COMING SOON CARDS
+// ========================================
+
 (function () {
   document.querySelectorAll(".coming-soon-card").forEach((card) => {
     card.style.cursor = "default";
@@ -321,7 +325,10 @@
   });
 })();
 
-/* Sync project tags on the overview page from index.html (single source of truth) */
+// ========================================
+// PROJEKT-TAGS SYNCHRONISIEREN
+// ========================================
+
 (function () {
   const cards = document.querySelectorAll(".po-card");
   if (!cards.length) return;
@@ -347,10 +354,12 @@
         if (catMap[href]) card.setAttribute("data-categories", catMap[href]);
       });
     })
-    .catch(() => {
-      /* keep the tags already in the markup as fallback */
-    });
+    .catch(() => {});
 })();
+
+// ========================================
+// MOBILE NAVIGATION
+// ========================================
 
 (function () {
   const burger = document.querySelector(".nav-burger");
@@ -371,6 +380,10 @@
   }
 })();
 
+// ========================================
+// TOUCH-GERÄTE: KARTEN IM VIEWPORT
+// ========================================
+
 (function () {
   if (window.matchMedia("(hover: none)").matches) {
     const observer = new IntersectionObserver(
@@ -384,6 +397,10 @@
     document.querySelectorAll(".project-card, .po-card, .ga-card").forEach((card) => observer.observe(card));
   }
 })();
+
+// ========================================
+// FOOTER ANIMATION
+// ========================================
 
 (function () {
   const footer = document.querySelector(".footer");
@@ -401,6 +418,10 @@
   io.observe(footer);
 })();
 
+// ========================================
+// SLIDESHOW
+// ========================================
+
 (function () {
   const images = document.querySelectorAll(".slideshow-image");
   if (!images.length) return;
@@ -413,6 +434,10 @@
     activeIndex = nextIndex;
   }, 1500);
 })();
+
+// ========================================
+// LIGHTBOX (BILDER & VIDEOS)
+// ========================================
 
 (function () {
   const LIGHTBOX_SEL = ".project-img img, .project-intro-image img, .project-intro-image video, .ga-card-img img, #gallery .project-image img";
@@ -495,24 +520,54 @@
   });
 })();
 
-    (function () {
-      const filters = document.querySelectorAll('.po-filter');
-      const cards = document.querySelectorAll('.po-card');
+// ========================================
+// PORTFOLIO FILTER
+// ========================================
 
-      filters.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          filters.forEach(function (f) { f.classList.remove('is-active'); });
-          btn.classList.add('is-active');
+(function () {
+  const filters = document.querySelectorAll('.po-filter');
+  const cards = document.querySelectorAll('.po-card');
 
-          const active = btn.dataset.filter;
-          cards.forEach(function (card) {
-            if (active === 'all') {
-              card.classList.remove('is-hidden');
-            } else {
-              const cats = (card.dataset.categories || '').split(' ');
-              card.classList.toggle('is-hidden', !cats.includes(active));
-            }
-          });
-        });
+  filters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filters.forEach(function (f) { f.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+
+      const active = btn.dataset.filter;
+      cards.forEach(function (card) {
+        if (active === 'all') {
+          card.classList.remove('is-hidden');
+        } else {
+          const cats = (card.dataset.categories || '').split(' ');
+          card.classList.toggle('is-hidden', !cats.includes(active));
+        }
       });
-    })();
+    });
+  });
+})();
+
+// ========================================
+// GALERIE FILTER
+// ========================================
+
+(function () {
+  const filters = document.querySelectorAll('.ga-filter');
+  const cards = document.querySelectorAll('.ga-card');
+
+  filters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filters.forEach(function (f) { f.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+
+      const active = btn.dataset.filter;
+      cards.forEach(function (card) {
+        if (active === 'all') {
+          card.classList.remove('is-hidden');
+        } else {
+          const cats = (card.dataset.categories || '').split(' ');
+          card.classList.toggle('is-hidden', !cats.includes(active));
+        }
+      });
+    });
+  });
+})();
