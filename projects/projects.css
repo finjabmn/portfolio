@@ -362,3 +362,14 @@
   right: clamp(1.25rem, 2.5vw, 2rem);
 }
 
+
+@media (min-width: 1025px) {
+  .project-gallery .project-card {
+    width: clamp(640px, 48vw, 860px);
+  }
+
+  .project-gallery .project-img {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+}
