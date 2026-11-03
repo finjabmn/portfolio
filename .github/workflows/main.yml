@@ -1,4 +1,4 @@
-name: Deploy to netcup via SFTP
+name: Deploy to netcup via FTP
 
 on:
   push:
@@ -13,27 +13,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install lftp and ssh-keyscan
-        run: sudo apt-get update && sudo apt-get install -y lftp openssh-client
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Add netcup host key to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          ssh-keyscan -p ${{ secrets.SFTP_PORT }} ${{ secrets.SFTP_HOST }} >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-
-      - name: Deploy files via SFTP
+      - name: Deploy files via FTPS
         env:
-          SFTP_HOST: ${{ secrets.SFTP_HOST }}
-          SFTP_PORT: ${{ secrets.SFTP_PORT }}
-          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
-          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-          SFTP_REMOTE_DIR: ${{ secrets.TARGET }}
+          FTP_HOST: ${{ secrets.SFTP_HOST }}
+          FTP_PORT: ${{ secrets.SFTP_PORT }}
+          FTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.TARGET }}
         run: |
           lftp -e "
-          open -u $SFTP_USERNAME,$SFTP_PASSWORD sftp://$SFTP_HOST:$SFTP_PORT
-          mkdir -p -f /$SFTP_REMOTE_DIR
-          mirror -R ./ /$SFTP_REMOTE_DIR --delete --verbose --exclude-glob .git/ --exclude-glob .github/ --exclude-glob .gitignore
+          set net:max-retries 2
+          set net:timeout 20
+          set net:reconnect-interval-base 5
+          set ftp:ssl-force true
+          set ssl:verify-certificate no
+          open -u $FTP_USERNAME,$FTP_PASSWORD ftp://$FTP_HOST:$FTP_PORT
+          mirror -R ./ /$FTP_REMOTE_DIR --delete --verbose --parallel=5 --exclude-glob .git/ --exclude-glob .github/ --exclude-glob .gitignore
           bye
           "
