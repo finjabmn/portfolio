@@ -1,0 +1,45 @@
+name: Deploy to netcup via SFTP
+'on':
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm ci
+      - name: Build site
+        run: npm run build
+      - name: Install lftp and ssh-keyscan
+        run: sudo apt-get update && sudo apt-get install -y lftp openssh-client
+      - name: Create .ssh directory
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+      - name: Add netcup host key to known_hosts
+        run: >
+          ssh-keyscan -p ${{ secrets.SFTP_PORT }} ${{ secrets.SFTP_HOST }} >>
+          ~/.ssh/known_hosts
+
+          chmod 644 ~/.ssh/known_hosts
+      - name: Deploy files via SFTP
+        env:
+          SFTP_HOST: '${{ secrets.SFTP_HOST }}'
+          SFTP_PORT: '${{ secrets.SFTP_PORT }}'
+          SFTP_USERNAME: '${{ secrets.SFTP_USERNAME }}'
+          SFTP_PASSWORD: '${{ secrets.SFTP_PASSWORD }}'
+          SFTP_REMOTE_DIR: '${{ secrets.TARGET }}'
+        run: |
+          lftp -e "
+          open -u $SFTP_USERNAME,$SFTP_PASSWORD sftp://$SFTP_HOST:$SFTP_PORT
+          mkdir -p /$SFTP_REMOTE_DIR
+          mirror -R ./_site/ /$SFTP_REMOTE_DIR --delete --verbose
+          bye
+          "
