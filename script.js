@@ -440,7 +440,7 @@
 // ========================================
 
 (function () {
-  const LIGHTBOX_SEL = ".project-img img, .project-intro-image img, .project-intro-image video, .ga-card-img img, #gallery .project-image img";
+  const LIGHTBOX_SEL = ".project-img img, .project-img video, .project-intro-image img, .project-intro-image video, .ga-card-img img, #gallery .project-image img";
   if (!document.querySelector(LIGHTBOX_SEL)) return;
 
   const overlay = document.createElement("div");

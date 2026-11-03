@@ -81,6 +81,32 @@
   object-fit: cover;
   object-position: center;
 }
+.project-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  background: linear-gradient(135deg, #e5e5e5, #d8d8d8);
+  font-size: clamp(0.75rem, 0.5vw + 0.55rem, 0.95rem);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.project-image-placeholder--hero {
+  width: 100%;
+  height: clamp(200px, 40vw, 700px);
+}
+
+.project-image-placeholder--portrait {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+.project-image-placeholder--gallery {
+  width: 100%;
+  height: 100%;
+}
 
 /* ── Intro: text + meta ──────────────────────── */
 .project-intro {
@@ -226,12 +252,17 @@
   overflow: hidden;
 }
 
-.project-img img {
+.project-img img,
+.project-img video {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
+}
+
+.project-img img,
+.project-img video {
   cursor: zoom-in;
 }
 

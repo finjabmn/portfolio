@@ -90,6 +90,17 @@
   overflow: hidden;
   background: #e8e8e8;
 }
+.po-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 10;
+  color: #777;
+  background: linear-gradient(135deg, #e5e5e5, #d8d8d8);
+  font-size: clamp(0.75rem, 0.5vw + 0.55rem, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
 .po-card-img img {
   display: block;

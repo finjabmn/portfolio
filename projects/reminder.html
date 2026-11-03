@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ececec" />
+    <link rel="icon" type="image/png" href="../images/Logo.png" />
+    <title>REMInder – Barrierearmer Medikamenten-Reminder</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../responsive.css" />
+    <link rel="stylesheet" href="projects.css" />
+    <link rel="stylesheet" href="projects-responsive.css" />
+    <link rel="preload" as="image" href="../images/Reminder/reminder_mockup.webp" />
+  </head>
+  <body>
+  <div class="page-wrapper">
+    <header>
+      <nav class="navbar">
+        <a href="../index.html" class="nav-logo">FINJA BORMANN</a>
+        <button class="nav-burger" aria-label="Menü öffnen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="../projects-overview.html">Projekte</a></li>
+          <li><a href="../galerie.html">Galerie</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="project-hero-image">
+        <img src="../images/Reminder/reminder_mockup.webp" alt="REMInder Medikamenten-Reminder Mockup" fetchpriority="high" />
+      </div>
+
+      <section class="section project-intro">
+        <div class="project-intro-inner">
+          <div class="project-intro-left">
+            <h1 class="project-title">REMInder</h1>
+            <div class="project-meta-list">
+              <p class="project-meta-item"><span class="project-meta-label">Rolle</span> User Research, Interaction Design, UX, Hardware Prototyping</p>
+              <p class="project-meta-item"><span class="project-meta-label">Tools</span> Raspberry Pi, Python</p>
+            </div>
+            <div class="project-description">
+              <p>REMInder entstand im Rahmen eines Hochschulmoduls, in dem wir als Team eine barrierearme Lösung für Menschen mit 
+                Beeinträchtigungen entwickeln sollten. Unsere Idee war eine Medikamentenerinnerung, die insbesondere ältere Menschen 
+                sowie Personen mit Hör- oder Gedächtnisbeeinträchtigungen bei der regelmäßigen Medikamenteneinnahme unterstützt.
+                <br><br>
+                Zu Beginn entwickelten wir auf Basis unserer Recherche eine Persona, um die Bedürfnisse und Herausforderungen 
+                unserer Zielgruppe besser zu verstehen. Das Konzept ermöglicht die Einrichtung individueller Einnahmezeiten per Software. 
+                Zur gewünschten Uhrzeit erinnert das Gerät täglich durch Licht-, Vibrations- und Tonsignale an die Medikamenteneinnahme. 
+                Die integrierten LEDs leuchten dabei passend zur Farbcodierung der Medikamentenbox, sodass Nutzer direkt erkennen, 
+                welches Fach für die jeweilige Einnahme vorgesehen ist. Über einen großen, haptisch gut erkennbaren Button lässt sich 
+                der Alarm ausschalten.
+                Mithilfe eines Raspberry Pi und verschiedener elektronischer Komponenten entwickelten und programmierten wir die 
+                grundlegenden Funktionen mit Python. Anschließend testeten wir den Prototyp anhand eines Nutzungsszenarios und 
+                evaluierten die Verständlichkeit der Signale sowie die Bedienbarkeit. Die Ergebnisse zeigten eine intuitive Nutzung 
+                und eine erfolgreiche Zuordnung der Medikamente.
+                <br><br>
+                Mögliche Weiterentwicklungen wären unter anderem eine automatische Erkennung der Medikamenteneinnahme, sodass der 
+                Alarm erst nach der Entnahme der Medikamente ausgeschaltet wird. Zudem eine Verriegelung der einzelnen Fächer, die sich erst 
+                zur jeweiligen Einnahmezeit öffnen lassen, sowie die Ausarbeitung eines fertigen Gehäuses zur Verkleidung der technischen Komponenten.</p>
+            </div>
+          </div>
+          <div class="project-intro-image">
+            <img src="../images/Reminder/reminder_prototyp.webp" alt="REMInder Hardware-Prototyp" loading="lazy" decoding="async" />
+            <div class="project-caption">
+              <p class="project-caption-tag">Hardware-Prototyp mit multisensorischen Signalen</p>
+              <p class="project-caption-name">REMInder</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section project-gallery">
+        <span class="heading-text" aria-hidden="true"></span>
+        <div class="projects-viewport">
+          <div class="projects-grid">
+            <div class="project-card">
+              <div class="project-img">
+                <video src="../images/Reminder/remi_video.mp4" autoplay loop muted playsinline aria-label="REMInder-Prototyp in Aktion"></video>
+              </div>
+              <div class="project-caption">
+                <p class="project-caption-tag">Der Hardware-Prototyp im Einsatz</p>
+                <p class="project-caption-name">REMInder in Aktion</p>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-img">
+                <img src="../images/Reminder/reminder_persona.png" alt="Persona für das REMInder-Projekt" loading="lazy" decoding="async" />
+              </div>
+              <div class="project-caption">
+                <p class="project-caption-tag">Zielgruppenprofil für die Entwicklung des Reminders</p>
+                <p class="project-caption-name">Persona</p>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-img">
+                <img src="../images/Reminder/reminder_komponenten.png" alt="Hardware-Komponenten des REMInder-Prototyps" loading="lazy" decoding="async" />
+              </div>
+              <div class="project-caption">
+                <p class="project-caption-tag">Arduino Nano, Raspberry Pi, RGB-LEDs, Vibrationsmotor und Bestätigungsbutton</p>
+                <p class="project-caption-name">Hardware-Komponenten</p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+
+      <nav class="section project-nav">
+        <a class="project-nav-link" href="geoknack.html">
+          <span class="project-nav-dir">← Vorheriges Projekt</span>
+          <span class="project-nav-name">Handyspiel Geoknack</span>
+        </a>
+        <a class="project-nav-link project-nav-link--next" href="handball-app.html">
+          <span class="project-nav-dir">Nächstes Projekt →</span>
+          <span class="project-nav-name">App TSG Hatten-Sandkrug</span>
+        </a>
+      </nav>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-work-together">Lets work<br class="footer-br"> together</p>
+      <div class="footer-links-row">
+        <a class="footer-link" href="mailto:finjabormann03@gmail.com">finjabormann03@gmail.com</a>
+        <div class="footer-social">
+          <a class="footer-link" href="https://de.linkedin.com/in/finja-bormann-8b305a2b4" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="footer-link" href="https://github.com/finjabmn" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+      <p class="footer-copy">&copy; 2026 Finja Bormann</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  </body>
+</html>
